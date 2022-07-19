@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <a mat-button routerLink="/">Home</a>
+
+  <a mat-button routerLink="/create" routerLinkActive="mat-accent"
+    >Add Company</a
+  >
+  <span class="spacer"></span>
+  <ng-container *ngIf="authService.isAuthenticated$ | async">
+    <a
+      mat-button
+      (click)="authService.logout({ returnTo: document.location.origin })"
+      >Logout</a
+    >
+  </ng-container>
+</mat-toolbar>
