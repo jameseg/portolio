@@ -3,18 +3,23 @@
   <a mat-button routerLink="/watchlist" routerLinkActive="mat-accent"
     >Watchlist</a
   >
-  <a mat-button routerLink="/create" routerLinkActive="mat-accent">
+  <a
+    mat-raised-button
+    color="accent"
+    routerLink="/create"
+    routerLinkActive="mat-accent"
+  >
     Add Company
   </a>
   <span class="spacer"></span>
-  <ng-container *ngIf="authService.isAuthenticated$ | async">
-    <a
+  <ng-container class="logout" *ngIf="authService.isAuthenticated$ | async">
+    <button
       mat-raised-button
-      color="primary"
+      color="warn"
       (click)="authService.logout({ returnTo: document.location.origin })"
     >
       Logout
-    </a>
+    </button>
   </ng-container>
 </mat-toolbar>
 
