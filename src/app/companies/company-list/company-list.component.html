@@ -5,6 +5,14 @@
       {{ company.ticker }}
     </mat-expansion-panel-header>
     <div>{{ company.name }}</div>
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/edit', company.id]"
+        >EDIT</a
+      >
+      <button mat-button color="warn" (click)="onDelete(company.id)">
+        DELETE
+      </button>
+    </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
 <mat-paginator

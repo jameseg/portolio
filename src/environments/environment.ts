@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   domain: 'dev-mj80-p38.us.auth0.com',
   clientId: 'PPPQTRBNIvn9Sb8bA5Xop19KhVGuw9NP',
+  apiUrl: 'http://localhost:3000/api',
 };
 
 /*

@@ -31,4 +31,8 @@ export class CompanyListComponent implements OnInit {
     this.companiesPerPage = pageData.pageSize;
     // this.companyService.getPosts(this.companiesPerPage, this.currentPage);
   }
+
+  onDelete(id: number) {
+    console.log('delete called');
+  }
 }

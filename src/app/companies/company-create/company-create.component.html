@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSaveCompany()" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="ticker"
+        name="ticker"
+        placeholder="Company Ticker"
+      />
+      <mat-error> Please enter a ticker. </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="name"
+        name="name"
+        placeholder="Company Name"
+      />
+      <mat-error> Please enter a name. </mat-error>
+    </mat-form-field>
+    <!-- <mat-form-field>
+      <table formControlName="incomeStatement"></table>
+    </mat-form-field> -->
+    <button mat-raised-button color="accent" type="submit">Save Company</button>
+  </form>
+</mat-card>
