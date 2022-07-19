@@ -8,11 +8,11 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CompanyComponent } from './company/company.component';
+import { CompanyListComponent } from './companies/company-list/company-list.component';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, CompanyComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, CompanyListComponent],
   imports: [
     AuthModule.forRoot({
       domain: environment.domain,

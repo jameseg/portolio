@@ -1,0 +1,19 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="companies.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let company of companies">
+    <mat-expansion-panel-header>
+      {{ company.ticker }}
+    </mat-expansion-panel-header>
+    <div>{{ company.name }}</div>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator
+  [length]="totalCompanies"
+  [pageSize]="companiesPerPage"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangePage($event)"
+  *ngIf="companies.length > 0"
+></mat-paginator>
+<p class="info-text mat-body-1" *ngIf="companies.length <= 0 && !isLoading">
+  No companies added yet
+</p>
