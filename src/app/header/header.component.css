@@ -1,10 +1,34 @@
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+a {
+  text-decoration: none;
+  color: whitesmoke;
+  margin-right: 20px;
+}
+
+.menu {
   display: flex;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
+
+
+
+/* .menu {
+  border: 1px solid white;
+  background-color: lightblue;
+  display: flex;
+  justify-content: space-between;
+}
+
+.links {
+  border: 1px solid white;
+  display: flex;
+  justify-content: flex-end;
+} */
