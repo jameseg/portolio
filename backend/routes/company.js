@@ -1,8 +1,9 @@
-const express = require("express");
-const CompanyController = require("../controllers/company");
+const express = require('express')
+const CompanyController = require('../controllers/company')
 
-const router = express.Router();
+const router = express.Router()
 
-router.post("", CompanyController.createCompany);
+router.post('', CompanyController.createCompany)
+router.get('', CompanyController.fetchCompanies)
 
-module.exports = router;
+module.exports = router

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { Company } from '../company.model';
+import { Component, OnInit } from '@angular/core'
+import { PageEvent } from '@angular/material/paginator'
+import { Subscription } from 'rxjs'
+import { Company } from './../company.model'
+import { CompanyService } from './../company.service'
 
 @Component({
   selector: 'app-company-list',
@@ -8,31 +10,38 @@ import { Company } from '../company.model';
   styleUrls: ['./company-list.component.css'],
 })
 export class CompanyListComponent implements OnInit {
-  isLoading = false;
-  totalCompanies = 0;
-  companiesPerPage = 5;
-  currentPage = 1;
-  pageSizeOptions = [1, 2, 5, 10];
-  companies!: Company[];
+  isLoading = false
+  totalCompanies = 0
+  companiesPerPage = 5
+  currentPage = 1
+  pageSizeOptions = [5, 10, 25, 50]
+  companies!: Company[]
+  private companiesSub!: Subscription
 
-  constructor() {}
+  constructor(public companyService: CompanyService) {}
 
   ngOnInit(): void {
-    this.companies = [
-      { id: 1, ticker: 'META', name: 'Meta Platforms' },
-      { id: 2, ticker: 'GOOG', name: 'Alphabet' },
-      { id: 3, ticker: 'OTCM', name: 'Over the Counter Markets' },
-    ];
+    this.isLoading = true
+    this.companyService.getCompanies(this.companiesPerPage, this.currentPage)
+    this.companiesSub = this.companyService
+      .getCompanyUpdatedListener()
+      .subscribe(
+        (companyData: { companies: Company[]; companyCount: number }) => {
+          this.isLoading = false
+          this.companies = companyData.companies
+          this.totalCompanies = companyData.companyCount
+        },
+      )
   }
 
   onChangePage(pageData: PageEvent) {
-    this.isLoading = true;
-    this.currentPage = pageData.pageIndex + 1;
-    this.companiesPerPage = pageData.pageSize;
-    // this.companyService.getPosts(this.companiesPerPage, this.currentPage);
+    this.isLoading = true
+    this.currentPage = pageData.pageIndex + 1
+    this.companiesPerPage = pageData.pageSize
+    this.companyService.getCompanies(this.companiesPerPage, this.currentPage)
   }
 
   onDelete(id: number) {
-    console.log('delete called');
+    console.log('delete called')
   }
 }
