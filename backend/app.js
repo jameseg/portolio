@@ -10,7 +10,7 @@ mongoose
   .connect(
     "mongodb+srv://jeg:" +
       process.env.MONGO_ATLAS_PW +
-      "@cluster0.ho1rk.mongodb.net/mean-app?w=majority"
+      "@portolio.uspgt.mongodb.net/investment"
   )
   .then(() => {
     console.log("Connected to database");
@@ -21,7 +21,7 @@ mongoose
   });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");

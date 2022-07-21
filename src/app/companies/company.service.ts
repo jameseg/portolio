@@ -14,11 +14,10 @@ export class CompanyService {
   constructor(private http: HttpClient, private router: Router) {}
 
   addCompany(ticker: string, name: string) {
-    console.log(BACKEND_URL);
-    console.log(environment);
-    const companyData = new FormData();
-    companyData.append('ticker', ticker);
-    companyData.append('name', name);
+    const companyData = {
+      ticker: ticker,
+      name: name,
+    };
 
     this.http
       .post<{ message: string; company: Company }>(
