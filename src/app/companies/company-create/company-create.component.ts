@@ -58,6 +58,7 @@ export class CompanyCreateComponent implements OnInit {
   }
 
   onSaveCompany() {
+    console.log(this.mode)
     if (this.form.invalid) {
       console.log('form is invalid')
       return
@@ -70,10 +71,11 @@ export class CompanyCreateComponent implements OnInit {
         this.form.value.name,
       )
     } else {
+      console.log(this.companyId, this.form.value.companyTicker)
       this.companyService.updateCompany(
         this.companyId,
-        this.form.value.companyTicker,
-        this.form.value.companyName,
+        this.form.value.ticker,
+        this.form.value.name,
       )
     }
     this.form.reset()

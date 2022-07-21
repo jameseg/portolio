@@ -78,3 +78,23 @@ exports.deleteCompany = (req, res, next) => {
       res.status(500).json({ message: 'delete company failed.', error: error })
     })
 }
+
+exports.updateCompany = (req, res, next) => {
+  const company = new Company({
+    _id: req.body.id,
+    ticker: req.body.ticker,
+    name: req.body.name,
+  })
+  console.log(company)
+  Company.updateOne({ _id: req.params.id }, company)
+    .then(result => {
+      console.log(result)
+      res.status(200).json({
+        message: 'Update successful.',
+      })
+    })
+
+    .catch(error => {
+      res.status(500).json({ message: 'Update company failed', error: error })
+    })
+}

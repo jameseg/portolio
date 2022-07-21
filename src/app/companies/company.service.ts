@@ -42,6 +42,7 @@ export class CompanyService {
       ticker: ticker,
       name: name,
     }
+    console.log('front ' + JSON.stringify(companyData))
     this.http.put(`${BACKEND_URL}/${id}`, companyData).subscribe(response => {
       this.router.navigate(['/'])
     })
