@@ -1,0 +1,9 @@
+mat-paginator {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+mat-spinner {
+  margin: auto
+}
