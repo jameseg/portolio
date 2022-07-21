@@ -35,6 +35,18 @@ export class CompanyService {
       })
   }
 
+  updateCompany(id: string, ticker: string, name: string) {
+    let companyData: Company
+    companyData = {
+      id: id,
+      ticker: ticker,
+      name: name,
+    }
+    this.http.put(`${BACKEND_URL}/${id}`, companyData).subscribe(response => {
+      this.router.navigate(['/'])
+    })
+  }
+
   getCompanies(companiesPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${companiesPerPage}&page=${currentPage}`
     this.http
@@ -64,6 +76,12 @@ export class CompanyService {
           companyCount: transformedCompaniesData.maxCompanies,
         })
       })
+  }
+
+  getCompany(id: string) {
+    return this.http.get<{ _id: string; ticker: string; name: string }>(
+      `${BACKEND_URL}/${id}`,
+    )
   }
 
   getCompanyUpdatedListener() {

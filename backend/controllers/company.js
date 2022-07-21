@@ -48,6 +48,23 @@ exports.fetchCompanies = (req, res, next) => {
     })
 }
 
+exports.fetchSingleCompany = (req, res, next) => {
+  Company.findById(req.params.id)
+    .then(company => {
+      if (company) {
+        console.log(company)
+        res.status(200).json(company)
+      } else {
+        res
+          .status(404)
+          .json({ message: `No company found with id: ${req.params.id}` })
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ message: 'fetch single company failed.' })
+    })
+}
+
 exports.deleteCompany = (req, res, next) => {
   console.log(req.params.id)
   Company.deleteOne({ _id: req.params.id })
