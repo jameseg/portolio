@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { PageEvent } from '@angular/material/paginator'
 import { Subscription } from 'rxjs'
 import { Company } from './../company.model'
@@ -9,13 +9,13 @@ import { CompanyService } from './../company.service'
   templateUrl: './company-list.component.html',
   styleUrls: ['./company-list.component.css'],
 })
-export class CompanyListComponent implements OnInit {
+export class CompanyListComponent implements OnInit, OnDestroy {
   isLoading = false
   totalCompanies = 0
   companiesPerPage = 5
   currentPage = 1
   pageSizeOptions = [5, 10, 25, 50]
-  companies!: Company[]
+  companies: Company[] = []
   private companiesSub!: Subscription
 
   constructor(public companyService: CompanyService) {}
@@ -41,7 +41,13 @@ export class CompanyListComponent implements OnInit {
     this.companyService.getCompanies(this.companiesPerPage, this.currentPage)
   }
 
-  onDelete(id: number) {
-    console.log('delete called')
+  onDelete(companyId: string) {
+    this.isLoading = true
+    this.companyService.deleteCompany(companyId).subscribe(() => {
+      this.companyService.getCompanies(this.companiesPerPage, this.currentPage)
+    })
+  }
+  ngOnDestroy(): void {
+    this.companiesSub.unsubscribe()
   }
 }

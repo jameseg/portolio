@@ -5,5 +5,6 @@ const router = express.Router()
 
 router.post('', CompanyController.createCompany)
 router.get('', CompanyController.fetchCompanies)
+router.delete('/:id', CompanyController.deleteCompany)
 
 module.exports = router

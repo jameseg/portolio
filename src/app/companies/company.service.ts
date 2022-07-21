@@ -69,4 +69,8 @@ export class CompanyService {
   getCompanyUpdatedListener() {
     return this.companiesUpdated.asObservable()
   }
+
+  deleteCompany(id: string) {
+    return this.http.delete(`${BACKEND_URL}/${id}`)
+  }
 }
