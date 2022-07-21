@@ -1,6 +1,7 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { AuthGuard } from '@auth0/auth0-angular'
+import { AuthGuard, AuthHttpInterceptor } from '@auth0/auth0-angular'
 import { CompanyCreateComponent } from './companies/company-create/company-create.component'
 import { CompanyListComponent } from './companies/company-list/company-list.component'
 
@@ -25,6 +26,12 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class AppRoutingModule {}

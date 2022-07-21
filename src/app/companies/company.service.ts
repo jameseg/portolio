@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators'
 import { environment } from './../../environments/environment'
 import { Company } from './../companies/company.model'
 
-const BACKEND_URL = `${environment.apiUrl}/companies`
+const BACKEND_URL = `${environment.dev.apiUrl}/api/companies`
 @Injectable({
   providedIn: 'root',
 })
