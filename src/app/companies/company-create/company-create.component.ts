@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, ParamMap } from '@angular/router'
+import { IncomeStatement } from '../../financials/income-statement/income-statement.model'
 import { Company } from '../company.model'
 import { CompanyService } from './../company.service'
 
@@ -15,6 +16,7 @@ export class CompanyCreateComponent implements OnInit {
   form!: FormGroup
   private mode = 'create'
   private companyId!: string
+  private incomeStatement!: IncomeStatement
 
   constructor(
     private companyService: CompanyService,
@@ -47,6 +49,7 @@ export class CompanyCreateComponent implements OnInit {
               id: companyData._id,
               ticker: companyData.ticker,
               name: companyData.name,
+              incomeStatement: companyData.incomeStatement,
             }
             this.form.setValue({
               ticker: this.company.ticker,
@@ -76,6 +79,7 @@ export class CompanyCreateComponent implements OnInit {
         this.companyId,
         this.form.value.ticker,
         this.form.value.name,
+        this.incomeStatement,
       )
     }
     this.form.reset()

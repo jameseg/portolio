@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 import { Subject } from 'rxjs'
 import { map } from 'rxjs/operators'
+import { IncomeStatement } from '../financials/income-statement/income-statement.model'
 import { environment } from './../../environments/environment'
 import { Company } from './../companies/company.model'
 
@@ -35,12 +36,18 @@ export class CompanyService {
       })
   }
 
-  updateCompany(id: string, ticker: string, name: string) {
+  updateCompany(
+    id: string,
+    ticker: string,
+    name: string,
+    incomeStatement: IncomeStatement,
+  ) {
     let companyData: Company
     companyData = {
       id: id,
       ticker: ticker,
       name: name,
+      incomeStatement: incomeStatement,
     }
     console.log('front ' + JSON.stringify(companyData))
     this.http.put(`${BACKEND_URL}/${id}`, companyData).subscribe(response => {
@@ -80,9 +87,12 @@ export class CompanyService {
   }
 
   getCompany(id: string) {
-    return this.http.get<{ _id: string; ticker: string; name: string }>(
-      `${BACKEND_URL}/${id}`,
-    )
+    return this.http.get<{
+      _id: string
+      ticker: string
+      name: string
+      incomeStatement: IncomeStatement
+    }>(`${BACKEND_URL}/${id}`)
   }
 
   getCompanyUpdatedListener() {

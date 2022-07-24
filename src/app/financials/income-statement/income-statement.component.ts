@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { MatTableDataSource } from '@angular/material/table'
+import { FinancialsService } from './../financials.service'
 import { IncomeStatement } from './income-statement.model'
 
 const INITIAL_DATA: IncomeStatement[] = [
@@ -235,10 +238,20 @@ const COLUMNS_SCHEMA = [
 })
 export class IncomeStatementComponent implements OnInit {
   displayedColumns = COLUMNS_SCHEMA.map(col => col.key)
-  dataSource: any = INITIAL_DATA
+  dataSource = new MatTableDataSource<IncomeStatement[]>()
   columnsSchema: any = COLUMNS_SCHEMA
+  private companyId: string = ''
 
-  constructor() {}
+  constructor(
+    public dialog: MatDialog,
+    private financialsService: FinancialsService,
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.financialsService
+      .getFinancials(this.companyId)
+      .subscribe((res: any) => {
+        this.dataSource = res.incomeStatement
+      })
+  }
 }
