@@ -12,7 +12,8 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { CompanyCreateComponent } from './companies/company-create/company-create.component'
 import { CompanyListComponent } from './companies/company-list/company-list.component'
-import { HeaderComponent } from './header/header.component'
+import { HeaderComponent } from './header/header.component';
+import { IncomeStatementComponent } from './income-statement/income-statement.component'
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HeaderComponent } from './header/header.component'
     HeaderComponent,
     CompanyListComponent,
     CompanyCreateComponent,
+    IncomeStatementComponent,
   ],
   imports: [
     AuthModule.forRoot({

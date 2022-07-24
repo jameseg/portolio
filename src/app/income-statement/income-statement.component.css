@@ -1,0 +1,13 @@
+.income {
+  display: flex;
+}
+
+table {
+  width: 100%
+}
+
+.save {
+  display: flex;
+  justify-content: right;
+  margin-right: 14px;
+}
