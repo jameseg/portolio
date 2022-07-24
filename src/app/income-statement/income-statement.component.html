@@ -1,46 +1,36 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- Position Column -->
-  <ng-container matColumnDef="financial">
-    <th mat-header-cell *matHeaderCellDef>Financial</th>
-    <td mat-cell *matCellDef="let row">{{ row.financial }}</td>
+<table mat-table [dataSource]="dataSource">
+  <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
+    <th mat-header-cell *matHeaderCellDef>
+      {{ col.label }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
+        <div class="btn-edit" *ngSwitchCase="'isEdit'">
+          <button mat-button (click)="element.isEdit = !element.isEdit">
+            Edit
+          </button>
+        </div>
+        <span *ngSwitchDefault>
+          {{ element[col.key] }}
+        </span>
+      </div>
+      <div [ngSwitch]="col.type" *ngIf="element.isEdit">
+        <div class="btn-edit" *ngSwitchCase="'isEdit'">
+          <button mat-button (click)="element.isEdit = !element.isEdit">
+            Done
+          </button>
+        </div>
+        <mat-form-field class="form-input" *ngSwitchCase="'number'">
+          <input
+            type="number"
+            matInput
+            (ngModelChange)="element[col.key] = $event"
+            [ngModel]="element[col.key]"
+          />
+        </mat-form-field>
+      </div>
+    </td>
   </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="ltm">
-    <th mat-header-cell *matHeaderCellDef>LTM</th>
-    <td mat-cell *matCellDef="let row">{{ row.ltm }}</td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="2021">
-    <th mat-header-cell *matHeaderCellDef>2021</th>
-    <td mat-cell *matCellDef="let row">{{ row['2021'] }}</td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="2020">
-    <th mat-header-cell *matHeaderCellDef>2020</th>
-    <td mat-cell *matCellDef="let row">{{ row['2020'] }}</td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="2019">
-    <th mat-header-cell *matHeaderCellDef>2019</th>
-    <td mat-cell *matCellDef="let row">{{ row['2019'] }}</td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <!-- <ng-container matColumnDef="2019">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
-      <td mat-cell *matCellDef="let row">{{ row['2019'] }}</td>
-    </ng-container> -->
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
-
-<div class="save">
-  <button mat-raised-button color="accent" (click)="saveData()">
-    Save Income Statement
-  </button>
-</div>

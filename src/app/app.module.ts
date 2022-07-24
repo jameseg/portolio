@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { MaterialModule } from './modules/material-module'
 
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ServiceWorkerModule } from '@angular/service-worker'
 import { AuthModule } from '@auth0/auth0-angular'
@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { CompanyCreateComponent } from './companies/company-create/company-create.component'
 import { CompanyListComponent } from './companies/company-list/company-list.component'
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './header/header.component'
 import { IncomeStatementComponent } from './income-statement/income-statement.component'
 
 @NgModule({
@@ -33,6 +33,7 @@ import { IncomeStatementComponent } from './income-statement/income-statement.co
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

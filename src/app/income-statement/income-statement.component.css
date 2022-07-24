@@ -1,13 +1,8 @@
-.income {
-  display: flex;
-}
-
 table {
-  width: 100%
+  width: 100%;
+  margin: auto;
 }
 
-.save {
-  display: flex;
-  justify-content: right;
-  margin-right: 14px;
+.btn-edit {
+  text-align: right;
 }
