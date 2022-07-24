@@ -214,6 +214,7 @@ const INITIAL_DATA: IncomeStatement[] = [
 
 const COLUMNS_SCHEMA = [
   { key: 'financial', type: 'text', label: 'Fincancial Metric' },
+  { key: 'isEdit', type: 'isEdit', label: '' },
   { key: 'ltm', type: 'number', label: 'LTM' },
   { key: '2021', type: 'number', label: '2021' },
   { key: '2020', type: 'number', label: '2020' },
@@ -226,7 +227,6 @@ const COLUMNS_SCHEMA = [
   { key: '2013', type: 'number', label: '2013' },
   { key: '2012', type: 'number', label: '2012' },
   { key: '2011', type: 'number', label: '2011' },
-  { key: 'isEdit', type: 'isEdit', label: '' },
 ]
 @Component({
   selector: 'app-income-statement',

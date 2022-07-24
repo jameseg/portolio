@@ -7,7 +7,7 @@
       <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
         <div class="btn-edit" *ngSwitchCase="'isEdit'">
           <button mat-button (click)="element.isEdit = !element.isEdit">
-            Edit
+            EDIT
           </button>
         </div>
         <span *ngSwitchDefault>
@@ -17,7 +17,7 @@
       <div [ngSwitch]="col.type" *ngIf="element.isEdit">
         <div class="btn-edit" *ngSwitchCase="'isEdit'">
           <button mat-button (click)="element.isEdit = !element.isEdit">
-            Done
+            DONE
           </button>
         </div>
         <mat-form-field class="form-input" *ngSwitchCase="'number'">
@@ -28,6 +28,9 @@
             [ngModel]="element[col.key]"
           />
         </mat-form-field>
+        <span *ngSwitchDefault>
+          {{ element[col.key] }}
+        </span>
       </div>
     </td>
   </ng-container>
